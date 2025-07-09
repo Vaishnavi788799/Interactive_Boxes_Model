@@ -1,0 +1,89 @@
+<div class="main-container">
+  <div class="header-container">
+    <div class="sideline"><hr /></div>
+    <div class="headline">YAY! It's BOGO</div>
+    <div class="sideline"><hr /></div>
+  </div>
+
+  <div class="box-container">
+    <div
+      class="box"
+      *ngFor="let unit of units; let i = index"
+      [class.selected]="selectedUnit === i"
+      (click)="selectUnit(i)"
+    >
+      <div class="box-content">
+        <span class="popular" *ngIf="i == 1" style="background-color: #ff6b82"
+          >Most Popular</span
+        >
+        <span>
+          <label class="custom-radio">
+            <input type="radio" name="option" value="a" />
+            <span class="radio-mark"></span>
+          </label>
+        </span>
+        <div class="left-box-part">
+          <strong>{{ unit.label }}</strong>
+          <span class="discount">{{ unit.discount }}</span
+          ><br />
+          <span class="subtext">Standard price</span>
+        </div>
+
+        <div class="right-box-part">
+          <strong>{{ unit.price }}</strong
+          ><br />
+          <span class="old-price">{{ unit.originalPrice }}</span>
+        </div>
+
+        <div class="expand-box" *ngIf="selectedUnit === i">
+          <div class="hash">
+            <span>#1</span><br />
+            <span> #2</span>
+          </div>
+
+          <div class="option-group">
+            <label>Size:</label>
+
+            <select [(ngModel)]="unit.size">
+              <option *ngFor="let size of sizes" [value]="size">
+                {{ size }}
+              </option>
+            </select>
+
+            <br />
+
+            <select [(ngModel)]="unit.size">
+              <option *ngFor="let size of sizes" [value]="size">
+                {{ size }}
+              </option>
+            </select>
+          </div>
+
+          <div class="option-group">
+            <label>Color:</label>
+            <select [(ngModel)]="unit.color">
+              <option *ngFor="let color of colors" [value]="color">
+                {{ color }}
+              </option>
+            </select>
+            <br />
+            <select [(ngModel)]="unit.color">
+              <option *ngFor="let color of colors" [value]="color">
+                {{ color }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="open-box">
+      <span class="left-open-box-part" style="color: #ff6b82"
+        >Free Delivery</span
+      >
+      <span class="right-open-box-part">Total: {{ selectedTotal }}</span>
+    </div>
+
+    <div class="cart">+ Add to Cart</div>
+  </div>
+</div>
